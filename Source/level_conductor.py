@@ -9,6 +9,7 @@ class level_conductor:
         self.bad_list=pygame.sprite.Group()
         self.block_list = pygame.sprite.Group()
         self.hero = TheGUY()
+        self.total_deployed = 0
 
     def add_objects_to_list(self):
         self.all_sprites_list.add(self.hero)
@@ -43,13 +44,15 @@ class level_conductor:
         if len(self.level['Data']['level']) > 0 and
          frame_number == self.level['Data']['level'][0]['tick']:
             information = self.level['Data']['level'].pop(0)
-            #see the type
-            #number 
+            #see the type and number
+            if information["enemies"] == "downers" and 
+            self.total_deployed + number <= 5:
             #deploy
             print('hit')
-
-
+        #run
         self.bad_list.update()
+        self.bad_list.Where_am_i()
+        
 
 
         
