@@ -40,6 +40,15 @@ class level_conductor:
     def update_objects(self, frame_number):
         self.stars_list.update()
         self.hero.mous_pos()
+        if len(self.level['Data']['level']) > 0 and
+         frame_number == self.level['Data']['level'][0]['tick']:
+            information = self.level['Data']['level'].pop(0)
+            #see the type
+            #number 
+            #deploy
+            print('hit')
+
+
         self.bad_list.update()
 
 
