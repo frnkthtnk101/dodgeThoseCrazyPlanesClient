@@ -54,9 +54,14 @@ class level_conductor:
             #see the type and number
             if information["enemies"] == "downers" and \
             (self.total_deployed + information['number']) <= 5:
+                i = 0
                 for sprite in self.bad_list:
-                    if sprite.deployed == False:
-                        sprite.deployed = True
+                    if i < information['number'] and \
+                        sprite.deployed == False:
+                            sprite.deployed = True
+                            i += 1
+                    else:
+                        break
         #run
         self.bad_list.update()
         self.update_total_deployed()
