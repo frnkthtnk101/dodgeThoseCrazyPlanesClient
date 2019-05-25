@@ -59,16 +59,19 @@ class bad_guy(pygame.sprite.Sprite):
         self.rect.x=random.randrange(600)
         self.rect.y=random.randrange(-500,0)
         self.deployed = False
-        self.EOS = False
+        self.on_screen = True
         
     def reset_pos(self):
         self.rect.y=random.randrange(-500,0)
         self.rect.x=random.randrange(600)
         
-
+    def Where_am_i(self):
+        if self.rect.y >= 500:
+            self.on_screen = False;
+            self.deployed = False;
 
     def update(self):
-        if self.EOS:
+        if self.on_screen and self.deployed:
             self.rect.y+=7
         if self.rect.y >= 500:
             self.reset_pos()
