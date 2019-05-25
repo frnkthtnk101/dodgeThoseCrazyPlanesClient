@@ -30,10 +30,10 @@ class level_conductor:
             False
             )
     
-    def initialize_connection_with_server():
+    def initialize_connection_with_server(self):
         return True
     
-    def get_a_level():
+    def get_a_level(self):
         level_rder = level_reader('/Users/francopettigrosso/ws/dodgeThoseCrazyPlanesClient/data.json')
         self.level = level_rder.get_level()
         
