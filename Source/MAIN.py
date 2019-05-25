@@ -3,6 +3,7 @@ import pygame
 from colors import *
 from classes import *
 from scores import *
+from level_conductor import level_conductor
 
 '''
 we do it like this
@@ -14,14 +15,11 @@ once it hits the meter. stop it and make reqeust a new level
 '''
 
 pygame.init()
-
+conductor = level_conductor()
 ## font render
 font = pygame.font.SysFont('Calibri', 25, True, False)
-
-
 #screen stuff
 size=(700,500)
-
 screen=pygame.display.set_mode(size)
 done=False
 miles=0.0
@@ -39,7 +37,7 @@ while not done:
             done= True
     screen.fill(color['black'])
     screen.blit(distance,[5,475])
-    miles+=score_flag(hero.pos_Y())
+    miles+=score_flag(conductor.hero.pos_Y())
     
     #print('x axis %g, y axis %g' %(hero.rect.x,hero.rect.y)) #test cordinates of good guy
     stars_list.update() #makes the stars move
