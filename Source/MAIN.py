@@ -15,25 +15,6 @@ once it hits the meter. stop it and make reqeust a new level
 
 pygame.init()
 
-#lists
-
-
-
-## init sprites
-#you
-hero=TheGUY()
-all_sprites_list.add(hero)
-block_list.add(hero)
-
-
-    
-#bad guys
-for i in range(5):
-    badGuy = bad_guy()
-    all_sprites_list.add(badGuy)
-    bad_list.add(badGuy)
-    block_list.add(badGuy) 
-    
 ## font render
 font = pygame.font.SysFont('Calibri', 25, True, False)
 

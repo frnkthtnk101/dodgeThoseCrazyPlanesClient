@@ -16,3 +16,8 @@ class level_conductor:
             stars= star()
             self.all_sprites_list.add(stars)
             self.stars_list.add(stars)
+        for i in range(5):
+            badGuy = bad_guy()
+            self.all_sprites_list.add(badGuy)
+            self.bad_list.add(badGuy)
+            self.block_list.add(badGuy)
