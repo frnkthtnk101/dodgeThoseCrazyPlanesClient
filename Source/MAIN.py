@@ -27,7 +27,11 @@ miles=0.0
 clock=pygame.time.Clock()
 pygame.mouse.set_visible(0)
 frames = 0
+if conductor.initialize_connection_with_server() is False:
+    raise Exception("cannot establish conneciton to the server")
+    pygame.quit()
 #get the first level
+conductor.get_a_level()
 #if it works, then play if not, then print to screen something happened.
 #sscreen Loop
 while not done:
