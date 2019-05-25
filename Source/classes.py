@@ -69,12 +69,13 @@ class bad_guy(pygame.sprite.Sprite):
         if self.rect.y >= 500:
             self.on_screen = False;
             self.deployed = False;
+            self.reset_pos()
 
     def update(self):
         if self.on_screen and self.deployed:
             self.rect.y+=7
-        if self.rect.y >= 500:
-            self.reset_pos()
+
+            
             
     
         
