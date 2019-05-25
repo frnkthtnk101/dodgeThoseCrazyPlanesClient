@@ -16,10 +16,7 @@ once it hits the meter. stop it and make reqeust a new level
 pygame.init()
 
 #lists
-all_sprites_list = pygame.sprite.Group()
-stars_list= pygame.sprite.Group()
-bad_list=pygame.sprite.Group()
-block_list = pygame.sprite.Group()
+
 
 
 ## init sprites
@@ -28,11 +25,7 @@ hero=TheGUY()
 all_sprites_list.add(hero)
 block_list.add(hero)
 
-#stars
-for i in range(50):
-    stars= star()
-    all_sprites_list.add(stars)
-    stars_list.add(stars)
+
     
 #bad guys
 for i in range(5):

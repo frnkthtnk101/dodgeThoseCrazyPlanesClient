@@ -8,3 +8,11 @@ class level_conductor:
         self.bad_list=pygame.sprite.Group()
         self.block_list = pygame.sprite.Group()
         self.hero = TheGUY()
+
+    def add_objects_to_list(self):
+        self.all_sprites_list.add(self.hero)
+        self.block_list.add(self.hero)
+        for i in range(50):
+            stars= star()
+            self.all_sprites_list.add(stars)
+            self.stars_list.add(stars)
