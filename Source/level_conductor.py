@@ -53,10 +53,10 @@ class level_conductor:
             information = self.level['Data']['level'].pop(0)
             #see the type and number
             if information["enemies"] == "downers" and \
-            (self.total_deployed + (int)information['number']) <= 5:
-                for i in range(5):
-                    if self.bad_list[i].deployed == False:
-                        self.bad_list[i].deployed = True
+            (self.total_deployed + information['number']) <= 5:
+                for sprite in self.bad_list:
+                    if sprite.deployed == False:
+                        sprite.deployed = True
         else:
             return "done"
         #run
