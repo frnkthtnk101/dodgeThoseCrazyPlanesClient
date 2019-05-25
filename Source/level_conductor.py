@@ -36,4 +36,11 @@ class level_conductor:
     def get_a_level(self):
         level_rder = level_reader('/Users/francopettigrosso/ws/dodgeThoseCrazyPlanesClient/data.json')
         self.level = level_rder.get_level()
+
+    def update_objects(self, frame_number):
+        self.stars_list.update()
+        self.hero.mous_pos()
+        self.bad_list.update()
+
+
         

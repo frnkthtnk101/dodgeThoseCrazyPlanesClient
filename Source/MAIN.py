@@ -45,9 +45,7 @@ while not done:
     miles+=score_flag(conductor.hero.pos_Y())
     
    #print('x axis %g, y axis %g' %(conductor.hero.rect.x,conductor.hero.rect.y)) #test cordinates of good guy
-    conductor.stars_list.update() #makes the stars move
-    conductor.hero.mous_pos()#changes cordinates of player
-    conductor.bad_list.update()#moves the bad guys
+    conductor.update_objects(frames)
 
     ###print(blocks_hit_list) #test collsion WARNING FRAMERATE DROP
     frames += 1
