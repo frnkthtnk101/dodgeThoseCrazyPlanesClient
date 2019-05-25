@@ -21,3 +21,10 @@ class level_conductor:
             self.all_sprites_list.add(badGuy)
             self.bad_list.add(badGuy)
             self.block_list.add(badGuy)
+    
+    def plane_collides(self):
+        return pygame.sprite.spritecollide(
+            self.hero,
+            self.block_list,
+            False
+            )

@@ -44,7 +44,7 @@ while not done:
     conductor.stars_list.update() #makes the stars move
     conductor.hero.mous_pos()#changes cordinates of player
     conductor.bad_list.update()#moves the bad guys
-    blocks_hit_list = pygame.sprite.spritecollide(conductor.hero, conductor.block_list, False)
+    blocks_hit_list = conductor.plane_collides()
     ###print(blocks_hit_list) #test collsion WARNING FRAMERATE DROP
     frames += 1
     #detects if the hero of this awesome game hits a bad guy
