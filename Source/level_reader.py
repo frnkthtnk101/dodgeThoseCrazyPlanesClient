@@ -1,12 +1,13 @@
 from json import *
 
+class level_reader:
+    def __init__(self, file):
+        self.file = file
+    
+    def get_level(self):
+        with open(self.file) as json_file:
+            temp = load(json_file)
+            json_file.close()
+            return temp
 
 
-
-'''
-class 
-with open('/Users/francopettigrosso/Desktop/DodgeTheCrazyPlanes/data.json') as jsonfile:
-    cheese = load(jsonfile)
-    print(cheese['Data']['Diffculty'])
-    jsonfile.close()
-'''
