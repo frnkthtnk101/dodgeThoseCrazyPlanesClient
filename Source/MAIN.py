@@ -44,12 +44,13 @@ while not done:
     conductor.stars_list.update() #makes the stars move
     conductor.hero.mous_pos()#changes cordinates of player
     conductor.bad_list.update()#moves the bad guys
-    blocks_hit_list = conductor.plane_collides()
+
     ###print(blocks_hit_list) #test collsion WARNING FRAMERATE DROP
     frames += 1
     #detects if the hero of this awesome game hits a bad guy
-    if len(blocks_hit_list) > 1:
+    if len(conductor.plane_collides()) > 1:
         print('GAME OVER.... DISTANCE TRAVELED: %f'%(miles))
+        break
 
     
         
