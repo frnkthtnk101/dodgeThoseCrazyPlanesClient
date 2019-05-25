@@ -3,7 +3,7 @@ import pygame
 from colors import *
 from classes import *
 from scores import *
-from level_conductor import level_conductor
+from level_conductor import *
 
 '''
 we do it like this
@@ -16,6 +16,7 @@ once it hits the meter. stop it and make reqeust a new level
 
 pygame.init()
 conductor = level_conductor()
+conductor.add_objects_to_list()
 ## font render
 font = pygame.font.SysFont('Calibri', 25, True, False)
 #screen stuff
@@ -39,7 +40,7 @@ while not done:
     screen.blit(distance,[5,475])
     miles+=score_flag(conductor.hero.pos_Y())
     
-    #print('x axis %g, y axis %g' %(hero.rect.x,hero.rect.y)) #test cordinates of good guy
+   #print('x axis %g, y axis %g' %(conductor.hero.rect.x,conductor.hero.rect.y)) #test cordinates of good guy
     conductor.stars_list.update() #makes the stars move
     conductor.hero.mous_pos()#changes cordinates of player
     conductor.bad_list.update()#moves the bad guys
@@ -49,10 +50,7 @@ while not done:
     #detects if the hero of this awesome game hits a bad guy
     if len(blocks_hit_list) > 1:
         print('GAME OVER.... DISTANCE TRAVELED: %f'%(miles))
-        #print(blocks_hit_list)
-        done=True
-        #highscore= append_list(name,miles,highscore)
-        #print(highscore)
+
     
         
     conductor.all_sprites_list.draw(screen) #makes everything move
