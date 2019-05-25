@@ -38,20 +38,32 @@ class level_conductor:
         level_rder = level_reader('/Users/francopettigrosso/ws/dodgeThoseCrazyPlanesClient/data.json')
         self.level = level_rder.get_level()
 
+    def update_total_deployed(self):
+        j = 0
+        for i in self.bad_list:
+            if i.deployed:
+                j += 1
+        return j
+
     def update_objects(self, frame_number):
         self.stars_list.update()
         self.hero.mous_pos()
-        if len(self.level['Data']['level']) > 0 and
+        if len(self.level['Data']['level']) > 0 and \
          frame_number == self.level['Data']['level'][0]['tick']:
             information = self.level['Data']['level'].pop(0)
             #see the type and number
-            if information["enemies"] == "downers" and 
-            self.total_deployed + number <= 5:
-            #deploy
-            print('hit')
+            if information["enemies"] == "downers" and \
+            (self.total_deployed + (int)information['number']) <= 5:
+                for i in range(5):
+                    if self.bad_list[i].deployed == False:
+                        self.bad_list[i].deployed = True
+        else:
+            return "done"
         #run
         self.bad_list.update()
         self.bad_list.Where_am_i()
+        self.update_total_deployed()
+        return "more levels"
         
 
 
