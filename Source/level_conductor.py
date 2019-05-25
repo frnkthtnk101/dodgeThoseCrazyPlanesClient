@@ -57,13 +57,9 @@ class level_conductor:
                 for sprite in self.bad_list:
                     if sprite.deployed == False:
                         sprite.deployed = True
-        else:
-            return "done"
         #run
         self.bad_list.update()
-        self.bad_list.Where_am_i()
         self.update_total_deployed()
-        return "more levels"
         
 
 
