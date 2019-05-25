@@ -40,10 +40,10 @@ while not done:
     miles+=score_flag(conductor.hero.pos_Y())
     
     #print('x axis %g, y axis %g' %(hero.rect.x,hero.rect.y)) #test cordinates of good guy
-    stars_list.update() #makes the stars move
-    hero.mous_pos()#changes cordinates of player
-    bad_list.update()#moves the bad guys
-    blocks_hit_list = pygame.sprite.spritecollide(hero, block_list, False)
+    conductor.stars_list.update() #makes the stars move
+    conductor.hero.mous_pos()#changes cordinates of player
+    conductor.bad_list.update()#moves the bad guys
+    blocks_hit_list = pygame.sprite.spritecollide(conductor.hero, conductor.block_list, False)
     ###print(blocks_hit_list) #test collsion WARNING FRAMERATE DROP
     frames += 1
     #detects if the hero of this awesome game hits a bad guy
@@ -55,7 +55,7 @@ while not done:
         #print(highscore)
     
         
-    all_sprites_list.draw(screen) #makes everything move
+    conductor.all_sprites_list.draw(screen) #makes everything move
     
   
     clock.tick(60) #keeps frame rate at 60 frames a sec
