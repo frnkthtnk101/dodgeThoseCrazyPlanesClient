@@ -35,7 +35,7 @@ for i in range(50):
     stars_list.add(stars)
     
 #bad guys
-for i in range(50):
+for i in range(5):
     badGuy = bad_guy()
     all_sprites_list.add(badGuy)
     bad_list.add(badGuy)
@@ -54,6 +54,8 @@ miles=0.0
 clock=pygame.time.Clock()
 pygame.mouse.set_visible(0)
 frames = 0
+#get the first level
+#if it works, then play if not, then print to screen something happened.
 #sscreen Loop
 while not done:
     pygame.display.set_caption('The Cool Game     %s'%(clock))
