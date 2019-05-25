@@ -4,6 +4,14 @@ from colors import *
 from classes import *
 from scores import *
 
+'''
+we do it like this
+we make 50 guys
+and make a list on the levels
+pop it when it his its mark
+and tell it what guys to create.
+once it hits the meter. stop it and make reqeust a new level
+'''
 
 pygame.init()
 
@@ -27,8 +35,8 @@ for i in range(50):
     stars_list.add(stars)
     
 #bad guys
-for i in range(5):
-    badGuy= bad_guy()
+for i in range(50):
+    badGuy = bad_guy()
     all_sprites_list.add(badGuy)
     bad_list.add(badGuy)
     block_list.add(badGuy) 
