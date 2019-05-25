@@ -9,5 +9,3 @@ class level_reader:
             temp = load(json_file)
             json_file.close()
             return temp
-
-

@@ -1,5 +1,6 @@
-from classes import *
 import pygame
+from classes import *
+from level_reader  import level_reader
 
 class level_conductor:
     def __init__(self):
@@ -28,3 +29,11 @@ class level_conductor:
             self.block_list,
             False
             )
+    
+    def initialize_connection_with_server():
+        return True
+    
+    def get_a_level():
+        level_rder = level_reader('/Users/francopettigrosso/ws/dodgeThoseCrazyPlanesClient/data.json')
+        self.level = level_rder.get_level()
+        
