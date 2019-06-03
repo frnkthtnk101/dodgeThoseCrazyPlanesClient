@@ -81,4 +81,3 @@ class client_hander:
         s.send(request)
         temp = s.recv(self.buffer_size)
         return json.loads(temp)
-
