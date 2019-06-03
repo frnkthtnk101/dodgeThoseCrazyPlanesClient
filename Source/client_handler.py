@@ -8,6 +8,7 @@ import socket
 import json
 from Classes.Message_ids import *
 from Classes.PDU import *
+from Classes.bad_levels import *
 
 class client_hander:
     '''
@@ -19,12 +20,13 @@ class client_hander:
         self.port = 80
         self.ip = '127.0.0.1'
         self.buffer_size = 4096
+        self.version = (56).to_bytes(1,byteorder= 'big')
     
     '''
     used to create a game
     '''
     def initialize_game(self):
-        init_pdu = PDU(Message_ids.INTIALIZE_GAME.value, None, (56).to_bytes(1, byteorder = 'big'), None)
+        init_pdu = PDU(Message_ids.INTIALIZE_GAME, None, (56).to_bytes(1, byteorder = 'big'), None)
         response = self.send(init_pdu)
         good_response = response['Message'] == Message_ids.RECEIVE_SESSION_ID.value
         if good_response:
@@ -35,8 +37,11 @@ class client_hander:
     '''
     used to report a bad level given
     '''
-    def send_bad_level(self):
-        raise Exception('not created')
+    def send_bad_level(self, reasons):
+        bad_levels_pdu = PDU(Message_ids.BAD_LEVEL, self.session_id, self.version, reasons)
+        response = self.send(bad_levels_pdu)
+        good_response = response['MessageId'] == Message_ids.RECEIVE_LEVEL.value
+        return good_response, response['Data']
     
     '''
     used when the player dies
