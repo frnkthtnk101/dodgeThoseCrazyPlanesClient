@@ -1,6 +1,6 @@
 from json import *
 
-class level_reader:
+class client_hander:
     def __init__(self, file):
         self.file = file
     
