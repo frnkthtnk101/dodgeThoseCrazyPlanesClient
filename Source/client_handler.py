@@ -47,13 +47,19 @@ class client_hander:
     used when the player dies
     '''
     def end_game(self):
-        raise Exception('not created')
+        end_game_pdu = PDU(Message_ids.END_GAME, self.session_id, self.version, None)
+        response = self.send(end_game_pdu)
+        good_response = response['MessageId'] == Message_ids.OK.value
+        return good_response
     
     '''
     used when the player quits
     '''
     def quit_game(self):
-        raise_Exception('not created')
+        end_game_pdu = PDU(Message_ids.END_GAME, self.session_id, self.version, None)
+        response = self.send(end_game_pdu)
+        good_response = response['MessageId'] == Message_ids.OK.value
+        return good_response
     
     '''
     used to get a new level
