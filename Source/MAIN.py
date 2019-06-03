@@ -5,14 +5,7 @@ from classes import *
 from scores import *
 from level_conductor import *
 
-'''
-we do it like this
-we make 50 guys
-and make a list on the levels
-pop it when it his its mark
-and tell it what guys to create.
-once it hits the meter. stop it and make reqeust a new level
-'''
+
 
 pygame.init()
 conductor = level_conductor()

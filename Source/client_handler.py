@@ -4,6 +4,10 @@ this is the skeleton
 for the client's conn-
 ection to the server
 '''
+import socket
+import json
+from Classes.Message_ids import *
+from Classes.PDU import *
 
 class client_hander:
     '''
@@ -12,6 +16,9 @@ class client_hander:
     '''
     def __init__(self):
         self.session_id = None
+        self.port = 80
+        self.ip = '127.0.0.1'
+        self.buffer_size = 4096
     
     '''
     used to create a game
@@ -46,5 +53,11 @@ class client_hander:
     '''
     used to send information to the machine
     '''
-    def send():
-        raise Exception('not created')
+    def send(self, request):
+        request_json = json.dumps(request)
+        s = socket.socket()
+        s.connect((self.ip, self.port))
+        s.send(request)
+        temp = s.recv(self.buffer_size)
+        return json.loads(temp)
+
