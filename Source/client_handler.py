@@ -17,7 +17,7 @@ class client_hander:
     '''
     def __init__(self):
         self.session_id = None
-        self.port = 80
+        self.port = 28960
         self.ip = '127.0.0.1'
         self.buffer_size = 4096
         self.version = (56).to_bytes(1,byteorder= 'big')
@@ -37,8 +37,9 @@ class client_hander:
     '''
     used to report a bad level given
     '''
-    def send_bad_level(self, reasons):
-        bad_levels_pdu = PDU(Message_ids.BAD_LEVEL, self.session_id, self.version, reasons)
+    def send_bad_level(self, reasons, difficulty, plane_types):
+        data = {'Reason' : reasons, 'Difficulty' : difficulty, 'PlaneTypes' : plane_types}
+        bad_levels_pdu = PDU(Message_ids.BAD_LEVEL, self.session_id, self.version, data)
         response = self.send(bad_levels_pdu)
         good_response = response['MessageId'] == Message_ids.RECEIVE_LEVEL.value
         return good_response, response['Data']
