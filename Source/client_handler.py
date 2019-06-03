@@ -24,7 +24,13 @@ class client_hander:
     used to create a game
     '''
     def initialize_game(self):
-        raise Exception('not created')
+        init_pdu = PDU(Message_ids.INTIALIZE_GAME.value, None, (56).to_bytes(1, byteorder = 'big'), None)
+        response = self.send(init_pdu)
+        good_response = response['Message'] == Message_ids.RECEIVE_SESSION_ID.value
+        if good_response:
+            self.session_id = response['SessionId']
+            return True
+        return False
     
     '''
     used to report a bad level given
