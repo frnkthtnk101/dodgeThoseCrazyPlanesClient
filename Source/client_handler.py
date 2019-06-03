@@ -64,8 +64,12 @@ class client_hander:
     '''
     used to get a new level
     '''
-    def get_level(self):
-        raise Exception('not created')
+    def get_level(self, difficulty, plane_types):
+        data = {'Difficulty' : difficulty, 'PlaneTypes' : plane_types}
+        get_level_pdu = PDU( Message_ids.GET_LEVEL, self.session_id, self.version, data)
+        response = self.send(get_level_pdu)
+        good_response = response['MessageId'] == Message_ids.RECEIVE_LEVEL.value
+        return good_response, response['Data'] 
 
     '''
     used to send information to the machine
