@@ -6,7 +6,7 @@ give back
 
 class PDU:
     def __init__(self, message, session_id, version, data):
-        self.message = message.value
-        self.session_id = session_id
-        self.version = version
-        self.data = data
+        self.Message = str(message.value)
+        self.SessionId = session_id
+        self.Version = version
+        self.Data = data
