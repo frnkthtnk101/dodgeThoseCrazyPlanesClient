@@ -1,4 +1,6 @@
 import pygame
+import sys
+sys.path.append('/Users/francopettigrosso/ws/dodgeThoseCrazyPlanesClient')
 from colors import *
 import random
 #import math too hard to play
@@ -9,7 +11,7 @@ class TheGUY(pygame.sprite.Sprite):
 
         #super init
         super().__init__()
-        self.image= pygame.image.load('../Sprites/hero.png')
+        self.image= pygame.image.load('/Users/francopettigrosso/ws/dodgeThoseCrazyPlanesClient/Sprites/hero.png')
         self.image.set_colorkey(color['white'])
         self.rect= self.image.get_rect()
 
@@ -34,7 +36,7 @@ class star(pygame.sprite.Sprite):
     def __init__(self):
         
         super().__init__()
-        self.image= pygame.image.load('../Sprites/star.png')
+        self.image= pygame.image.load('/Users/francopettigrosso/ws/dodgeThoseCrazyPlanesClient/Sprites/star.png')
         self.image.set_colorkey(color['white'])
         self.rect= self.image.get_rect()
   
@@ -53,7 +55,7 @@ class bad_guy(pygame.sprite.Sprite):
     def __init__(self):
         #super init
         super().__init__()
-        self.image= pygame.image.load('../Sprites/badguys.png')
+        self.image= pygame.image.load('/Users/francopettigrosso/ws/dodgeThoseCrazyPlanesClient/Sprites/badguys.png')
         self.image.set_colorkey(color['white'])
         self.rect= self.image.get_rect()
         self.rect.x=random.randrange(600)

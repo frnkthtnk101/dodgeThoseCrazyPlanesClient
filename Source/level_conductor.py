@@ -1,6 +1,7 @@
 import pygame
 from classes import *
-from level_reader  import level_reader
+
+from client_handler import *
 
 class level_conductor:
     def __init__(self):
@@ -10,6 +11,7 @@ class level_conductor:
         self.block_list = pygame.sprite.Group()
         self.hero = TheGUY()
         self.total_deployed = 0
+        self.handler = client_handler()
 
     def add_objects_to_list(self):
         self.all_sprites_list.add(self.hero)
@@ -32,11 +34,22 @@ class level_conductor:
             )
     
     def initialize_connection_with_server(self):
-        return True
+        return self.handler.initialize_game()
     
     def get_a_level(self):
-        level_rder = level_reader('/Users/francopettigrosso/ws/dodgeThoseCrazyPlanesClient/data.json')
-        self.level = level_rder.get_level()
+        good, temp_data = self.handler.get_level('easy',['downers'])
+        if good:
+            correct_difficulty = (temp_data['Difficulty'] == 'easy') == False
+            correct_planes = (temp_data['PlaneTypes'] == ['Downers']) == False
+            is_anything_incorrect = correct_difficulty or correct_planes
+            if is_anything_incorrect:
+                Reasons = [] 
+                if correct_difficulty == False:
+                    Reasons.append(5)
+                if correct_planes == False:
+                    Reasons.append(2)
+                good, temp_data = self.handler.send_bad_level(Reasons,'easy',['downers'])
+        self.level = temp_data
 
     def update_total_deployed(self):
         j = 0
@@ -48,12 +61,14 @@ class level_conductor:
     def update_objects(self, frame_number):
         self.stars_list.update()
         self.hero.mous_pos()
-        if len(self.level['Data']['level']) > 0 and \
-         frame_number == self.level['Data']['level'][0]['tick']:
-            information = self.level['Data']['level'].pop(0)
+        more_waves = len(self.level['level']) > 0
+        same_frame = frame_number == self.level['level'][0]['tick']
+        if more_waves and same_frame:
+            information = self.level['level'].pop(0)
             #see the type and number
-            if information["enemies"] == "downers" and \
-            (self.total_deployed + information['number']) <= 5:
+            same_enemies = information["enemies"] == 'downers'
+            under_max_pop = (self.total_deployed + information['number']) <= 5
+            if same_enemies and under_max_pop:
                 i = 0
                 for sprite in self.bad_list:
                     if i < information['number'] and \
@@ -64,7 +79,10 @@ class level_conductor:
                         break
         #run
         self.bad_list.update()
-        self.update_total_deployed()
+        self.total_deployed  = self.update_total_deployed()
+
+    def game_complete(self, frame_number):
+        return frame_number >= self.level['CompleteAt']
         
 
 

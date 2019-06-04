@@ -38,7 +38,11 @@ while not done:
     miles+=score_flag(conductor.hero.pos_Y())
     
    #print('x axis %g, y axis %g' %(conductor.hero.rect.x,conductor.hero.rect.y)) #test cordinates of good guy
-    conductor.update_objects(frames)
+    is_the_game_done = conductor.game_complete(frames)
+    if is_the_game_done is False:
+        conductor.update_objects(frames)
+    else:
+        conductor.get_a_level()
 
     ###print(blocks_hit_list) #test collsion WARNING FRAMERATE DROP
     frames += 1

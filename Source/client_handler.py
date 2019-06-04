@@ -10,7 +10,7 @@ from Classes.Message_ids import *
 from Classes.PDU import *
 from Classes.bad_levels import *
 
-class client_hander:
+class client_handler:
     '''
     defines the what a session_id
     is
