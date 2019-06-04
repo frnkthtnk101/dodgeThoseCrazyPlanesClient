@@ -20,13 +20,13 @@ class client_hander:
         self.port = 28960
         self.ip = '127.0.0.1'
         self.buffer_size = 4096
-        self.version = (56).to_bytes(1,byteorder= 'big')
+        self.version = 56
     
     '''
     used to create a game
     '''
     def initialize_game(self):
-        init_pdu = PDU(Message_ids.INTIALIZE_GAME, None, (56).to_bytes(1, byteorder = 'big'), None)
+        init_pdu = PDU(Message_ids.INTIALIZE_GAME, None, self.version , None)
         response = self.send(init_pdu)
         good_response = response['Message'] == Message_ids.RECEIVE_SESSION_ID.value
         if good_response:
@@ -76,9 +76,10 @@ class client_hander:
     used to send information to the machine
     '''
     def send(self, request):
-        request_json = json.dumps(request)
+        request_json = json.dumps(request.__dict__)
+        request_json_bytes = str.encode(request_json)
         s = socket.socket()
         s.connect((self.ip, self.port))
-        s.send(request)
+        s.send(request_json_bytes)
         temp = s.recv(self.buffer_size)
         return json.loads(temp)
