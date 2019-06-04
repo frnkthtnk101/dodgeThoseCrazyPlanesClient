@@ -17,12 +17,12 @@ class client_handler_should(unittest.TestCase):
             raise Exception('We were not able to initialize with server')
     
     def tearDown(self):
-        if self.method_quit:
+        if self.method_quit is False:
             the_game_ended = self.controller.end_game()
-            if the_game_ended:
+            if the_game_ended is False:
                 raise Exception('we couldnt close the game')
 
-    def test_should_send_bad_level(self):
+    def test_should_get_level(self):
         we_got_a_level, data = self.controller.get_level('easy', ['downers'])
         if we_got_a_level:
             is_level_easy = data['Difficulty'] == 'easy'
@@ -34,11 +34,11 @@ class client_handler_should(unittest.TestCase):
 
     def test_should_quit_game(self):
         self.method_quit = True
-        the_game_ended = self.controller.end_game()
+        the_game_ended = self.controller.quit_game()
         self.assertTrue(the_game_ended)
 
-    def test_should_get_level(self):
-        server_ack_ok, data = self.controller.end_bad_level([2,5], 'easy', ['downers'])
+    def test_should_get_bad_level(self):
+        server_ack_ok, data = self.controller.send_bad_level([2,5], 'easy', ['downers'])
         if server_ack_ok:
             is_level_easy = data['Difficulty'] == 'easy'
             did_we_get_same_planes = data['PlaneTypes'] == ['downers']

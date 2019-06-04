@@ -41,7 +41,7 @@ class client_hander:
         data = {'Reason' : reasons, 'Difficulty' : difficulty, 'PlaneTypes' : plane_types}
         bad_levels_pdu = PDU(Message_ids.BAD_LEVEL, self.session_id, self.version, data)
         response = self.send(bad_levels_pdu)
-        good_response = response['MessageId'] == Message_ids.RECEIVE_LEVEL.value
+        good_response = response['Message'] == Message_ids.RECEIVE_LEVEL.value
         return good_response, response['Data']
     
     '''
@@ -50,7 +50,7 @@ class client_hander:
     def end_game(self):
         end_game_pdu = PDU(Message_ids.END_GAME, self.session_id, self.version, None)
         response = self.send(end_game_pdu)
-        good_response = response['MessageId'] == Message_ids.OK.value
+        good_response = response['Message'] == Message_ids.OK.value
         return good_response
     
     '''
@@ -59,7 +59,7 @@ class client_hander:
     def quit_game(self):
         end_game_pdu = PDU(Message_ids.END_GAME, self.session_id, self.version, None)
         response = self.send(end_game_pdu)
-        good_response = response['MessageId'] == Message_ids.OK.value
+        good_response = response['Message'] == Message_ids.OK.value
         return good_response
     
     '''
@@ -69,7 +69,7 @@ class client_hander:
         data = {'Difficulty' : difficulty, 'PlaneTypes' : plane_types}
         get_level_pdu = PDU( Message_ids.GET_LEVEL, self.session_id, self.version, data)
         response = self.send(get_level_pdu)
-        good_response = response['MessageId'] == Message_ids.RECEIVE_LEVEL.value
+        good_response = response['Message'] == Message_ids.RECEIVE_LEVEL.value
         return good_response, response['Data'] 
 
     '''
