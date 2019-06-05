@@ -1,5 +1,14 @@
+'''
+message_ids.py
+an easy way to remeber
+the messages getting passed
+'''
 from enum import Enum
 
+'''
+the messages and the appropriate
+number
+'''
 class Message_ids(Enum):
     INTIALIZE_GAME = 0
     CANNOT_INITIALIZE_GAME = 1

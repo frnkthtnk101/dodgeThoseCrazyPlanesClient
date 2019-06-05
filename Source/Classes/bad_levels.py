@@ -1,5 +1,13 @@
+'''
+bad_levels.py
+unused code
+'''
 from enum import Enum
 
+'''
+when a bad level is encountered
+we want to know why
+'''
 class bad_levels(Enum):
     different_version = 1
     different_planes = 2

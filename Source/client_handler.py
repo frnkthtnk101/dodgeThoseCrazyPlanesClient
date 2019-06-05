@@ -15,12 +15,16 @@ class client_handler:
     defines the what a session_id
     is
     '''
-    def __init__(self):
+    def __init__(self, ip_address, lod):
         self.session_id = None
         self.port = 28960
-        self.ip = '127.0.0.1'
+        if ip_address == '':
+            self.ip = '127.0.0.1'
+        else:
+            self.ip = ip_address
         self.buffer_size = 4096
         self.version = 56
+        self.lod = lod
     
     '''
     used to create a game
@@ -51,16 +55,18 @@ class client_handler:
         end_game_pdu = PDU(Message_ids.END_GAME, self.session_id, self.version, None)
         response = self.send(end_game_pdu)
         good_response = response['Message'] == Message_ids.OK.value
+        self.session_id = -1
         return good_response
     
     '''
     used when the player quits
     '''
     def quit_game(self):
-        end_game_pdu = PDU(Message_ids.END_GAME, self.session_id, self.version, None)
-        response = self.send(end_game_pdu)
-        good_response = response['Message'] == Message_ids.OK.value
-        return good_response
+        if self.session_id > -1:
+            end_game_pdu = PDU(Message_ids.END_GAME, self.session_id, self.version, None)
+            response = self.send(end_game_pdu)
+            good_response = response['Message'] == Message_ids.OK.value
+            return good_response
     
     '''
     used to get a new level
