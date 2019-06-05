@@ -20,7 +20,7 @@ class client_handler_should(unittest.TestCase):
     then initializes a game with the server
     '''
     def setUp(self):
-        self.controller = client_hander('','easy')
+        self.controller =  client_handler('','easy')
         able_to_initialize = self.controller.initialize_game()
         self.method_quit = False
         if able_to_initialize is False:
