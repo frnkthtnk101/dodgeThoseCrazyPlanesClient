@@ -3,6 +3,7 @@ Main.py
 this is what orcherstrates everything
 this bring all the modules together to 
 make this game.
+statefulness
 '''
 import pygame
 import re
@@ -23,6 +24,7 @@ while True:
         break
 
 pygame.init()
+#statefull
 conductor = level_conductor(ip_address, pick_level_of_difficulty)
 conductor.add_objects_to_list()
 ## font render
@@ -36,10 +38,12 @@ clock = pygame.time.Clock()
 pygame.mouse.set_visible(0)
 frames = 0
 #the conductor first attempts to talk to a server.
+#statefull
 if conductor.initialize_connection_with_server() is False:
     raise Exception("cannot establish conneciton to the server")
     pygame.quit()
 #get the first level
+#statefull
 if conductor.get_a_level() == False:
     raise Exception("cannot get a level from server")
     pygame.quit()
@@ -63,12 +67,14 @@ while not done:
         #kill the game
         if conductor.get_a_level() == False:
             raise Exception("cannot get a level from server")
+            #statefull
             conductor.handler.end_game()
             pygame.quit()
         frames = 0
     frames += 1
     #detects if the hero of this awesome game hits a bad guy
     if len(conductor.plane_collides()) > 1:
+        #statefull
         conductor.handler.end_game()
         print('GAME OVER.... DISTANCE TRAVELED: %f'%(miles))
         break

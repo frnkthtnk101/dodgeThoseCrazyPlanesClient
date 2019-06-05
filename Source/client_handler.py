@@ -10,10 +10,12 @@ from Classes.Message_ids import *
 from Classes.PDU import *
 from Classes.bad_levels import *
 
+'''
+statefullness
+'''
 class client_handler:
     '''
     defines the what a session_id
-    is
     '''
     def __init__(self, ip_address, lod):
         self.session_id = None
@@ -28,6 +30,7 @@ class client_handler:
     
     '''
     used to create a game
+    #statefull
     '''
     def initialize_game(self):
         init_pdu = PDU(Message_ids.INTIALIZE_GAME, None, self.version , None)
@@ -40,6 +43,7 @@ class client_handler:
     
     '''
     used to report a bad level given
+    #statefull
     '''
     def send_bad_level(self, reasons, difficulty, plane_types):
         data = {'Reason' : reasons, 'Difficulty' : difficulty, 'PlaneTypes' : plane_types}
@@ -50,6 +54,7 @@ class client_handler:
     
     '''
     used when the player dies
+    #statefull
     '''
     def end_game(self):
         end_game_pdu = PDU(Message_ids.END_GAME, self.session_id, self.version, None)
@@ -60,6 +65,7 @@ class client_handler:
     
     '''
     used when the player quits
+    #statefull
     '''
     def quit_game(self):
         if self.session_id > -1:
@@ -70,6 +76,7 @@ class client_handler:
     
     '''
     used to get a new level
+    #statefull
     '''
     def get_level(self, difficulty, plane_types):
         data = {'Difficulty' : difficulty, 'PlaneTypes' : plane_types}
@@ -80,6 +87,7 @@ class client_handler:
 
     '''
     used to send information to the machine
+    #statefull
     '''
     def send(self, request):
         request_json = json.dumps(request.__dict__)

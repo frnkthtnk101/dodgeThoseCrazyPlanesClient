@@ -11,6 +11,7 @@ from client_handler import *
 the class that is the middle man of
 pygames and the server. It moves sprites,
 checks collisions. creates games and levels
+#statefull
 '''
 class level_conductor:
 
@@ -56,6 +57,7 @@ class level_conductor:
     
     '''
     starts a games by connecting to the server
+    #statefull
     '''
     def initialize_connection_with_server(self):
         return self.handler.initialize_game()
@@ -63,6 +65,7 @@ class level_conductor:
     '''
     gets a level. if it fails once it will
     try one more time.
+    #statefull
     '''
     def get_a_level(self):
         good, temp_data = self.handler.get_level(self.handler.lod,['downers'])
@@ -83,6 +86,7 @@ class level_conductor:
     '''
     just checks how many bad_guys are currently
     on screen.
+    #statefull
     '''
     def update_total_deployed(self):
         j = 0
@@ -95,6 +99,7 @@ class level_conductor:
     updates all the objects on the screen
     and will add more bad guys depending on the
     fram its at and what the level data witholds
+    #statefull
     '''
     def update_objects(self, frame_number):
         self.stars_list.update()
@@ -122,6 +127,7 @@ class level_conductor:
 
     '''
     checks to see if a game is complete
+    #statefull
     '''
     def game_complete(self, frame_number):
         return frame_number >= self.level['CompleteAt']

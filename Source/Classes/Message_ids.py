@@ -8,6 +8,8 @@ from enum import Enum
 '''
 the messages and the appropriate
 number
+helps with statefullness and 
+Fuzzing and accidents in coding
 '''
 class Message_ids(Enum):
     INTIALIZE_GAME = 0

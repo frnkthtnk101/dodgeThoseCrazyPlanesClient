@@ -3,11 +3,13 @@
 This is a game about a ship in space, surviving for  
 for its life from the bad guys of space.
 
+
 ## TOC
 - Modules
 - Installation
 - the robustness
 - did franco do the extra cred?
+
 
 ## Modules
 The following modules are going to be needed to run this program (in python3.7)  
@@ -34,6 +36,17 @@ so you have the correct permission. VScode gets funny with that stuff
 5. beat the highschore of 1000
 
 ### Running the Test
+to run the test you need to hard-code the path of the source... recomend running them in
+vscode
+
+
 ## the robustness
+through testing, I was able to debug allot of issues with the system. Also found out that
+there are some chinks in the aromour when it comes to my states. After initiailize, a program 
+can easily keep sending bad level request over and eventually break the system OR the client does have to
+end or quit the game. other than that, Its pretty solid. You can't get levels without telling the
+server you are starting a game. The test just test the basics out. for example, if I send a level request, I get a  level response.
+
+
 ## did franco do the extra cred?
 no.
